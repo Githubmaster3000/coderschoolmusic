@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useRef, useEffect } from "react";
+import Player from "./components/Player";
+import songsData from "./components/audios";
 
-function App() {
+function App({}) {
+  const audioElem = useRef();
+  const [dymUrl, setDymUrl] = useState(0);
+  const [dymStatus, setDymStatus] = useState("Playing");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <audio  src={songsData[dymUrl].url} ref={audioElem} />
+      <Player audioElem={audioElem} setDymUrl={setDymUrl} dymUrl={dymUrl} />
+    </>
   );
 }
 
